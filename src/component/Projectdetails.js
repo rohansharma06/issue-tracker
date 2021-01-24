@@ -10,7 +10,8 @@ class Projectdetails extends Component {
             title:'',
             description:'',
             label:'',
-            author:''
+            author:'',
+            sort:'none'
         }
     }
 
@@ -36,13 +37,34 @@ class Projectdetails extends Component {
             title:'',
             description:'',
             label:'',
-            author:''
+            author:'',
+            sort:'none'
         })
        
     }
 
+    handleSort = (e) =>{
+        this.setState({
+            sort:e.target.value
+          })
+    }
+    removeSort = () =>{
+        this.setState({
+            sort:'none'
+          })
+    }
     render() {
         const project = this.props.displayProject;
+        const { sort } = this.state;
+        // console.log(project);
+        let issue = project.issue;
+        if(sort === 'assending'){
+            issue = project.issue.sort((a,b) => (a.number > b.number) ? 1 : ((b.number > a.number) ? -1 : 0));
+        }else if(sort === 'desending'){
+            issue = project.issue.sort((a,b) => (a.number < b.number) ? 1 : ((b.number < a.number) ? -1 : 0));
+        }
+
+        // console.log('yess:',x);
         return (
             <div className="container mt-10">
                 <div className="row">
@@ -54,11 +76,27 @@ class Projectdetails extends Component {
                                 <p className="card-text">{project.description}</p>
                             </div>
                         </div>
+                       
                         <button type="button" className="btn btn-dark mt-5" data-bs-toggle="modal" data-bs-target="#addissue">Add issue</button>
                     </div>
                     <div className="col-8">
-                        { project.issue.length > 0 ?
-                            project.issue.map((issue,index) =>(
+                        <div className="row">
+                            <div className="mb-2">
+                                <span className="p-2 text-primary" style={{fontSize:"15px"}}><b>Sort Issue No</b>:</span>
+                                <select className="col-4 m-2" id="rating" name="cadort-rating" value={this.state.sort}  onChange={this.handleSort}>
+                                    <option value="none">None</option>
+                                    <option value="assending">Assending</option>
+                                    <option value="desending">Desending</option>
+                                </select>
+                                {
+                                    (this.state.sort === 'assending' || this.state.sort === 'desending') &&
+                                    <button type="button" class="btn btn-danger" onClick={this.removeSort}>Remove</button>
+                                }
+                                
+                            </div>
+                        </div>
+                        { issue.length > 0 ?
+                            issue.map((issue,index) =>(
                                 <IssueDetails issue ={issue} index={index} key={`issue-${index}`} />
                             )) : 
                             <div className="card mb-3">
