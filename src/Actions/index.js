@@ -2,7 +2,8 @@ import {
     FETCH_PROJECT,
     ADD_PROJECT,
     VIEW_PROJECT_DETAILS,
-    VIEW_HOME_PAGE
+    VIEW_HOME_PAGE,
+    ADD_ISSUE,
 } from './actionType';
 import { projects } from '../Data/project';
 
@@ -50,5 +51,13 @@ export function viewProject(project){
 export function viewHome(){
     return {
         type: VIEW_HOME_PAGE
+    }
+}
+
+// add issue
+export function addIsuue(data){
+    return {
+        type: ADD_ISSUE,
+        data
     }
 }

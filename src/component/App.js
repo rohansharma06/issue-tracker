@@ -14,7 +14,7 @@ class App extends Component {
   }
   
   render(){
-    const {projects, showHome} = this.props;
+    const {projects, showHome,displayProject} = this.props;
     return(
       <div>
         <Navbar dispatch={this.props.dispatch} />
@@ -22,7 +22,7 @@ class App extends Component {
           (showHome)?
           <Homepage projects={projects} dispatch={this.props.dispatch}/>
           :
-          <Projectdetails dispatch={this.props.dispatch} />
+          <Projectdetails />
         }
       </div>
     );
@@ -32,7 +32,8 @@ class App extends Component {
 function mapStateToProps(state) {
   return {
     projects: state.projects,
-    showHome: state.showHome
+    showHome: state.showHome,
+    displayProject: state.displayProject
   }
 }
 export default connect(mapStateToProps)(App);

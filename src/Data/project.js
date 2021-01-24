@@ -9,12 +9,14 @@ export const projects = [
                 description:'invalid data',
                 label:['error'],
                 author:'Admin 1',
+                number:0
             },
             {
                 title:'bug2',
                 description:'invalid data',
-                label:['error'],
+                label:['error1'],
                 author:'Admin 1',
+                number:1
             }
         ]
     },
