@@ -52,7 +52,7 @@ class Homepage extends Component {
                             <div className="tab-content" id="nav-tabContent">
                                 {
                                     projects.map((project,index) =>(
-                                        <Projectinfo project ={project} index={index} key={`project-${index}`}/>
+                                        <Projectinfo project ={project} index={index} key={`project-${index}`} dispatch={this.props.dispatch} />
                                     ))
                                 }
                             </div>

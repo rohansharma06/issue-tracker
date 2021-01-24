@@ -1,10 +1,32 @@
 import {
     FETCH_PROJECT,
-    ADD_PROJECT
+    ADD_PROJECT,
+    VIEW_PROJECT_DETAILS,
+    VIEW_HOME_PAGE
 } from '../Actions/actionType';
 
 const initialAuthState = {
-    projects:[]
+    projects:[],
+    showHome: false,
+    displayProject:{
+        name:"Hospital-API",
+        description:"Basic API to keep track and generate reports of patients in Covid-19 time.",
+        author:"Rohan Sharma",
+        issue: [
+            {
+                title:'bug',
+                description:'invalid data',
+                label:['error'],
+                author:'Admin 1',
+            },
+            {
+                title:'bug2',
+                description:'invalid data',
+                label:['error'],
+                author:'Admin 1',
+            }
+        ]
+    }
 }
 
 export default function auth(state = initialAuthState, action){
@@ -19,6 +41,18 @@ export default function auth(state = initialAuthState, action){
             return{
                 ...state,
                 projects: [...state.projects,{name:action.name,description:action.description,author:action.author,issue:[]}]
+            }
+        case VIEW_PROJECT_DETAILS:
+            return {
+                ...state,
+                showHome: false,
+                displayProject: action.project
+            }
+        case VIEW_HOME_PAGE:
+            return {
+                ...state,
+                showHome: true,
+                displayProject: {}
             }
         default:
             return state;

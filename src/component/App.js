@@ -2,6 +2,7 @@ import React,{Component} from 'react';
 import { connect } from 'react-redux';
 import Homepage from './Homepage';
 import Navbar from './Navbar';
+import Projectdetails from './Projectdetails';
 import { fetchProject } from '../Actions'
 
 class App extends Component {
@@ -13,11 +14,16 @@ class App extends Component {
   }
   
   render(){
-    const {projects} = this.props;
+    const {projects, showHome} = this.props;
     return(
       <div>
-        <Navbar />
-        <Homepage projects={projects} dispatch={this.props.dispatch}/>
+        <Navbar dispatch={this.props.dispatch} />
+        {
+          (showHome)?
+          <Homepage projects={projects} dispatch={this.props.dispatch}/>
+          :
+          <Projectdetails dispatch={this.props.dispatch} />
+        }
       </div>
     );
   }
@@ -26,6 +32,7 @@ class App extends Component {
 function mapStateToProps(state) {
   return {
     projects: state.projects,
+    showHome: state.showHome
   }
 }
 export default connect(mapStateToProps)(App);
