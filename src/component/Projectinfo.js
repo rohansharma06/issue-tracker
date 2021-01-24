@@ -21,7 +21,7 @@ class Projectinfo extends Component {
                             }
                         </p>
                     }
-                    <button type="button" className="btn btn-secondary">View</button>
+                    <button type="button" className="btn btn-secondary" id={index}>View</button>
                 </div>
             ):(
                 <div className="tab-pane fade show" id={`book-${index}`} role="tabpanel" aria-labelledby={`list-book-${index}`}>
@@ -37,7 +37,7 @@ class Projectinfo extends Component {
                             }
                         </p>
                     }
-                    <button type="button" className="btn btn-secondary">View</button>
+                    <button type="button" className="btn btn-secondary" id={index}>View</button>
                 </div>
             )
 
