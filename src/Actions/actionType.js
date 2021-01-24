@@ -12,3 +12,6 @@ export const VIEW_PROJECT_DETAILS = 'VIEW_PROJECT_DETAILS';
 
 //--- view Home page
 export const VIEW_HOME_PAGE = 'VIEW_HOME_PAGE';
+
+//--- add issue
+export const ADD_ISSUE = 'ADD_ISSUE';
