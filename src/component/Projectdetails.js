@@ -62,9 +62,11 @@ class Projectdetails extends Component {
             issue = project.issue.sort((a,b) => (a.number > b.number) ? 1 : ((b.number > a.number) ? -1 : 0));
         }else if(sort === 'desending'){
             issue = project.issue.sort((a,b) => (a.number < b.number) ? 1 : ((b.number < a.number) ? -1 : 0));
+        }else{
+            issue = project.issue
         }
 
-        // console.log('yess:',x);
+        // console.log('yess:',issue);
         return (
             <div className="container mt-10">
                 <div className="row">
@@ -81,17 +83,21 @@ class Projectdetails extends Component {
                     </div>
                     <div className="col-8">
                         <div className="row">
-                            <div className="mb-2">
+                            <div className="col-12 mb-2">
                                 <span className="p-2 text-primary" style={{fontSize:"15px"}}><b>Sort Issue No</b>:</span>
-                                <select className="col-4 m-2" id="rating" name="cadort-rating" value={this.state.sort}  onChange={this.handleSort}>
+                                <select className="col-3 m-2" id="rating" name="cadort-rating" value={this.state.sort}  onChange={this.handleSort}>
                                     <option value="none">None</option>
                                     <option value="assending">Assending</option>
                                     <option value="desending">Desending</option>
                                 </select>
                                 {
                                     (this.state.sort === 'assending' || this.state.sort === 'desending') &&
-                                    <button type="button" class="btn btn-danger" onClick={this.removeSort}>Remove</button>
+                                    <button type="button" className="btn btn-danger" onClick={this.removeSort}>X</button>
                                 }
+                                {/* <span className="p-2 text-primary" style={{fontSize:"15px"}}><b>Search</b>:</span> */}
+                                {/* <span className="ml-2 p-2 text-primary" style={{fontSize:"15px"}}><b>Search</b>:</span> */}
+                                <input className="ml-10" type="text" placeholder="Search" style={{width:"250px"}} required />
+                                <button type="button" className="btn btn-info">Search</button>
                                 
                             </div>
                         </div>
@@ -106,6 +112,7 @@ class Projectdetails extends Component {
                             </div>
                         }
                         
+
                     </div>
                 </div>
                 
