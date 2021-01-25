@@ -11,7 +11,8 @@ class Projectdetails extends Component {
             description:'',
             label:'',
             author:'',
-            sort:'none'
+            sort:'none',
+            search:''
         }
     }
 
@@ -38,7 +39,9 @@ class Projectdetails extends Component {
             description:'',
             label:'',
             author:'',
-            sort:'none'
+            sort:'none',
+            search:'',
+            searchApply: false
         })
        
     }
@@ -53,9 +56,22 @@ class Projectdetails extends Component {
             sort:'none'
           })
     }
+
+    handleSerchApply = () => {
+        this.setState({
+            searchApply: true
+        })
+    }
+    removeSerach = () => {
+        this.setState({
+            searchApply: false,
+            search: ''
+        })
+    }
+
     render() {
-        const project = this.props.displayProject;
-        const { sort } = this.state;
+        let project = this.props.displayProject;
+        const { sort,search,searchApply } = this.state;
         // console.log(project);
         let issue = project.issue;
         if(sort === 'assending'){
@@ -66,7 +82,9 @@ class Projectdetails extends Component {
             issue = project.issue
         }
 
-        // console.log('yess:',issue);
+        (searchApply)? issue = project.issue.filter(item => item.title == search):issue = issue;
+
+        // console.log('yess:',property);
         return (
             <div className="container mt-10">
                 <div className="row">
@@ -96,8 +114,12 @@ class Projectdetails extends Component {
                                 }
                                 {/* <span className="p-2 text-primary" style={{fontSize:"15px"}}><b>Search</b>:</span> */}
                                 {/* <span className="ml-2 p-2 text-primary" style={{fontSize:"15px"}}><b>Search</b>:</span> */}
-                                <input className="ml-10" type="text" placeholder="Search" style={{width:"250px"}} required />
-                                <button type="button" className="btn btn-info">Search</button>
+                                <input className="ml-10" type="text" placeholder="Search by title" style={{width:"250px"}} value={this.state.search} onChange={(e) => this.handleInputChange('search', e.target.value)} required />
+                                {
+                                    (!searchApply) ? <button type="button" className="btn btn-info" onClick={this.handleSerchApply}>Search</button>
+                                    :<button type="button" className="btn btn-danger" onClick={this.removeSerach}>Remove</button>
+                                
+                                }
                                 
                             </div>
                         </div>
